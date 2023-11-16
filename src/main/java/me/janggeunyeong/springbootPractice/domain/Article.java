@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CollectionId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -34,9 +35,12 @@ public class Article {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @Builder
-    public Article(String title, String content) {
+    @Column(name="author", nullable = false)
+    private String author;
 
+    @Builder
+    public Article(String author,String title, String content) {
+        this.author = author;
         this.title = title;
         this.content = content;
     }
